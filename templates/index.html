@@ -6,31 +6,62 @@
     <meta name="description" content="Animal viewer and file upload application">
     <title>Animal Viewer & File Upload</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <header class="header">
+        <h1>PetScope Manager</h1>
+    </header>
+    
     <div class="container">
         <div class="box" role="region" aria-label="Animal Selection">
-            <h2>Select Animal</h2>
+            <h2><i class="fas fa-paw"></i> Select Animal</h2>
             <div class="animal-selection" role="radiogroup">
                 <label>
-                    <input type="radio" name="animal" value="cat" aria-label="Select Cat"> Cat
+                    <input type="radio" name="animal" value="cat" aria-label="Select Cat">
+                    <span><i class="fas fa-cat"></i> Cat</span>
                 </label>
                 <label>
-                    <input type="radio" name="animal" value="dog" aria-label="Select Dog"> Dog
+                    <input type="radio" name="animal" value="dog" aria-label="Select Dog">
+                    <span><i class="fas fa-dog"></i> Dog</span>
                 </label>
                 <label>
-                    <input type="radio" name="animal" value="elephant" aria-label="Select Elephant"> Elephant
+                    <input type="radio" name="animal" value="elephant" aria-label="Select Elephant">
+                    <span><i class="fas fa-hippo"></i> Elephant</span>
                 </label>
             </div>
-            <div id="animal-image" role="img" aria-label="Selected animal image will appear here"></div>
+            <div class="image-container">
+                <div id="animal-image" role="img" aria-label="Selected animal image will appear here">
+                    <img src="" alt="" style="display: none;">
+                </div>
+                <div class="zoom-controls">
+                    <i class="fas fa-search-minus"></i>
+                    <input type="range" class="zoom-slider" min="100" max="200" value="100" aria-label="Zoom control">
+                    <i class="fas fa-search-plus"></i>
+                    <span class="zoom-value">100%</span>
+                </div>
+            </div>
         </div>
 
         <div class="box" role="region" aria-label="File Upload">
-            <h2>File Upload</h2>
-            <input type="file" id="file-input" aria-label="Choose file to upload">
+            <h2><i class="fas fa-upload"></i> File Upload</h2>
+            <div class="file-upload-container" id="drop-zone">
+                <input type="file" id="file-input" aria-label="Choose file to upload">
+                <label for="file-input" class="upload-button">
+                    Choose File or Drop Here
+                </label>
+                <p class="mt-2 text-sm text-gray-600">
+                    Supported formats: PDF, PNG, JPG, GIF, DOC
+                </p>
+            </div>
+            <div class="progress-bar" style="display: none;">
+                <div class="progress-bar-fill"></div>
+            </div>
             <div id="file-info" role="status" aria-live="polite"></div>
         </div>
     </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html> 
